@@ -23,4 +23,6 @@ holidays<2.0.0
 openai
 requests
 streamlit-chat
-pip install sphinx_rtd_theme // configuration github
+sphinx
+sphinx_rtd_theme
+
