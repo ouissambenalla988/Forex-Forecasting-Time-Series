@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta
 from data_collector import ForexDataCollector
 import numpy as np
+<<<<<<< HEAD
 import toml
 import os
 
@@ -17,6 +18,8 @@ if os.path.exists(secrets_path):
 else:
     ALPHA_VANTAGE_API_KEY = None
     NEWS_API_KEY = None
+=======
+>>>>>>> e73985b1ecca975a63a7b6f139f3111d75967bb0
 
 # Initialize session state to track if prophet initialization was successful
 if 'prophet_import_success' not in st.session_state:
@@ -104,8 +107,12 @@ def get_collectors(pair, timeframe):
     try:
         collector = ForexDataCollector(
             currency_pair=pair,
+<<<<<<< HEAD
             interval=timeframe,
             alpha_vantage_key=ALPHA_VANTAGE_API_KEY
+=======
+            interval=timeframe
+>>>>>>> e73985b1ecca975a63a7b6f139f3111d75967bb0
         )
         
         # Only initialize prophet if it was successfully imported
@@ -120,12 +127,19 @@ def get_collectors(pair, timeframe):
         st.error(f"Error initializing collectors: {str(e)}")
         if "Alpha Vantage API key not found" in str(e):
             st.error("""
+<<<<<<< HEAD
             Veuillez ajouter votre clé Alpha Vantage dans le fichier .streamlit/secrets.toml :
 
 [ALPHA_VANTAGE]
 key = "votre_cle_api_alpha_vantage"
 
 Vous pouvez obtenir une clé gratuite ici : https://www.alphavantage.co/support/#api-key
+=======
+            Please add your Alpha Vantage API key to your .env file:
+            ALPHA_VANTAGE_API_KEY=your_api_key
+            
+            You can get a free API key at: https://www.alphavantage.co/support/#api-key
+>>>>>>> e73985b1ecca975a63a7b6f139f3111d75967bb0
             """)
         return None, None
 
@@ -930,10 +944,17 @@ with tab4:
             import requests
             
             load_dotenv()
+<<<<<<< HEAD
             # Utiliser la clé API chargée depuis .streamlit/secrets.toml
             news_api_key = NEWS_API_KEY
             if not news_api_key:
                 st.warning("NEWS_API_KEY not found in .streamlit/secrets.toml. Please add it there.")
+=======
+            news_api_key = os.getenv('NEWS_API_KEY')
+            
+            if not news_api_key:
+                st.warning("NEWS_API_KEY not found in environment variables. Please add it to your .env file.")
+>>>>>>> e73985b1ecca975a63a7b6f139f3111d75967bb0
                 st.info("You can get a free API key from https://newsapi.org/")
                 return pd.DataFrame()
                 
@@ -1124,4 +1145,8 @@ with tab4:
             """)
             
         # Add a disclaimer
+<<<<<<< HEAD
         st.caption(f"News data for {selected_pair} provided by News API (newsapi.org)")
+=======
+        st.caption(f"News data for {selected_pair} provided by News API (newsapi.org)") 
+>>>>>>> e73985b1ecca975a63a7b6f139f3111d75967bb0

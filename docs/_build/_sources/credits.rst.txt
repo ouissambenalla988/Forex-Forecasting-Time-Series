@@ -1,0 +1,8 @@
+Remerciements 🙏
+================
+
+- Alpha Vantage pour les données Forex
+- Facebook Prophet pour la prévision
+- News API pour l’actualité
+- Streamlit pour le dashboard
+- TextBlob pour le traitement NLP
