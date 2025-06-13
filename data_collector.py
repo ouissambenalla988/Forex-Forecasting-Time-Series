@@ -4,18 +4,11 @@ from datetime import datetime, timedelta
 import talib
 from sqlalchemy import create_engine
 import os
-<<<<<<< HEAD
-import requests
-
-class ForexDataCollector:
-    def __init__(self, currency_pair="EUR/USD", interval="daily", db_path="sqlite:///forex_data.db", alpha_vantage_key=None):
-=======
 from dotenv import load_dotenv
 import requests
 
 class ForexDataCollector:
     def __init__(self, currency_pair="EUR/USD", interval="daily", db_path="sqlite:///forex_data.db"):
->>>>>>> e73985b1ecca975a63a7b6f139f3111d75967bb0
         """
         Initialize the ForexDataCollector using Alpha Vantage API
         
@@ -29,21 +22,10 @@ class ForexDataCollector:
             Valid values: "daily", "weekly", "monthly"
         db_path : str
             SQLite database path
-<<<<<<< HEAD
-        alpha_vantage_key : str
-            Alpha Vantage API key (optional). If not provided, must be set in .env file
-=======
->>>>>>> e73985b1ecca975a63a7b6f139f3111d75967bb0
         """
         self.base_currency, self.quote_currency = currency_pair.split('/')
         self.interval = self._convert_interval(interval)
         self.engine = create_engine(db_path)
-<<<<<<< HEAD
-        # Utiliser la clé passée en argument ou lever une erreur explicite
-        self.alpha_vantage_key = alpha_vantage_key
-        if not self.alpha_vantage_key:
-            raise ValueError("Alpha Vantage API key not found. Please provide it from .streamlit/secrets.toml.")
-=======
         
         # Load Alpha Vantage API key
         load_dotenv()
@@ -51,7 +33,6 @@ class ForexDataCollector:
         
         if not self.alpha_vantage_key:
             raise ValueError("Alpha Vantage API key not found in .env file")
->>>>>>> e73985b1ecca975a63a7b6f139f3111d75967bb0
             
     def _convert_interval(self, interval):
         """Convert interval string to Alpha Vantage format"""
@@ -581,8 +562,4 @@ class ForexDataCollector:
             
         except Exception as e:
             print(f"Error fetching data: {str(e)}")
-<<<<<<< HEAD
-            return None
-=======
             return None 
->>>>>>> e73985b1ecca975a63a7b6f139f3111d75967bb0
