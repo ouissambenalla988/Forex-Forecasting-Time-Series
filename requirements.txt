@@ -25,4 +25,5 @@ requests
 streamlit-chat
 sphinx
 sphinx_rtd_theme
-
+sphinx
+furo
