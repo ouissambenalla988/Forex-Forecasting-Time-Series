@@ -1,20 +1,38 @@
-.. Forex-Forecasting-Time-Series documentation master file
+Bienvenue dans la documentation du projet Forex 📊
+==================================================
 
-Bienvenue sur la documentation de Forex-Forecasting-Time-Series
-=================================================================
+.. image:: _static/forex_banner.png
+   :width: 100%
+   :align: center
 
-.. include:: readme.rst
-   :start-line: 1
+Ce projet implémente un tableau de bord complet pour l’analyse et la prédiction des mouvements du marché Forex à l’aide de **Facebook Prophet**, **Alpha Vantage** et **Streamlit**.
+
+📌 **Fonctionnalités principales** :
+
+- 📈 Visualisation de données historiques
+- 🧠 Prédiction de prix via Facebook Prophet
+- 📊 Indicateurs techniques (RSI, MACD ...)
+- 📡 Actualités spécifiques par devise avec analyse de sentiment
+- ✅ Génération de signaux de trading 
+- 💾 Export CSV et interface interactive
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contenu:
+   :caption: Contenu
 
-   readme
+   installation
+   utilisation
+   video_demo
+   limitations
+   notebook
 
-Indices et Tables
-==================
+📽️ Aperçu Vidéo
+---------------
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. raw:: html
+
+  
+
+.. image:: _static/graphique_dashboard.png
+   :width: 80%
+   :align: center

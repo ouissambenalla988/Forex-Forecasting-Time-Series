@@ -1,0 +1,60 @@
+==============================
+🧠 Détails du Dashboard
+==============================
+
+📊 Indicateurs Techniques
+-------------------------
+
+**RSI**, **MACD**, et **Bandes de Bollinger** permettent de détecter :
+
+- Zones de surachat / survente
+- Convergence / divergence de tendance
+- Volatilité potentielle
+
+📈 Prédiction avec Facebook Prophet
+-----------------------------------
+
+Le modèle :blue:`Prophet` est utilisé pour prédire **7 jours à l’avance**.
+
+.. note::
+
+   Prophet tient compte des *tendances*, *saisonnalités* et *vacances* pour améliorer les prédictions.
+
+📍 Trading Signals
+------------------
+
+Deux types de signaux :
+
+1. **Basés sur les indicateurs**
+2. **Basés sur Prophet** : Entrée, TP, SL optimisés automatiquement
+
+Chaque signal contient :
+- Niveau de confiance
+- Direction prédite
+- Analyse croisée
+
+📰 Intégration des News
+------------------------
+
+Articles liés aux paires sélectionnées, avec :green:`analyse de sentiment`, *score*, *icônes couleur*, et *sources alternatives*.
+
+📊 Tableaux de bord interactifs
+-------------------------------
+
+- Graphiques avec *Zoom*
+- Surlignage de zones stratégiques
+- Téléchargement CSV
+
+⚠️ Limitations
+--------------
+
+:red:`⚠` Prévisions statistiques = basées sur le passé  
+:red:`⚠` Les API gratuites ont des limites de requêtes  
+:red:`⚠` L’analyse de sentiment automatique peut être imprécise
+
+💡 Bonnes pratiques
+-------------------
+
+:green:`✔` Utiliser au moins 60 jours d’historique  
+:green:`✔` Combiner indicateurs et prévisions  
+:green:`✔` Vérifier les actualités avant toute décision  

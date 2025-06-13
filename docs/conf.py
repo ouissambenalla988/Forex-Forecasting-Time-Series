@@ -1,31 +1,35 @@
-import os
-import sys
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+# -- Paramètres généraux ---------------------------------------------------
 
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-
-project = 'Forex-Forecasting-Time-Series'
-copyright = '2025, BENALLA Ouissam'
-author = 'BENALLA Ouissam'
-release = '1.0'
-
-# -- General configuration ---------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
-
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon']
-
-
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+project = 'Prédiction Forex '
+copyright = '2025'
+author = 'Yassine_Ouissam'
 
 language = 'fr'
 
-# -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
+# -- Extensions ------------------------------------------------------------
 
-html_theme = 'alabaster'
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.todo',
+    'sphinx.ext.githubpages',
+]
+
+# -- Thème HTML ------------------------------------------------------------
+
+html_theme = 'furo'
+html_title = "Documentation du Dashboard IA Forex"
 html_static_path = ['_static']
+html_logo = '_static/logo.png'  # optionnel si tu ajoutes un logo
+
+html_theme_options = {
+    "sidebar_hide_name": False,
+    "light_css_variables": {
+        "color-brand-primary": "#0066cc",
+        "color-brand-content": "#333333",
+    },
+}
+
+html_static_path = ['_static']
+
