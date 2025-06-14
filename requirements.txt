@@ -41,10 +41,4 @@ streamlit-chat==0.1.1
 # Utilitaires
 requests==2.31.0
 
-# Packages essentiels pour Prophet
 prophet==1.1.1
-pystan==2.19.1.1
-holidays==0.21.13
-convertdate>=2.1.2
-lunarcalendar>=0.0.9
-cmdstanpy==0.9.5
