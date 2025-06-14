@@ -19,7 +19,6 @@ plotly==5.14.1
 # Time Series Forecasting
 statsmodels==0.13.5
 holidays==0.28
-pystan==2.19.1.1
 
 # API/Web
 fastapi==0.95.2
@@ -35,16 +34,9 @@ backtrader==1.9.78.123
 # News
 newsapi-python==0.2.7
 
-# OpenAI
-openai==0.28.1
 
 # Chat UI
 streamlit-chat==0.1.1
 
 # Utilitaires
 requests==2.31.0
-sphinx
-sphinx_rtd_theme
-sphinx
-furo
-
