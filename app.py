@@ -125,20 +125,13 @@ def get_collectors(pair, timeframe):
         st.error(f"Error initializing collectors: {str(e)}")
         if "Alpha Vantage API key not found" in str(e):
             st.error("""
-
-            Veuillez ajouter votre clé Alpha Vantage dans le fichier .streamlit/secrets.toml :
+Veuillez ajouter votre clé Alpha Vantage dans le fichier .streamlit/secrets.toml :
 
 [ALPHA_VANTAGE]
 key = "votre_cle_api_alpha_vantage"
 
 Vous pouvez obtenir une clé gratuite ici : https://www.alphavantage.co/support/#api-key
-
-            Please add your Alpha Vantage API key to your .env file:
-            ALPHA_VANTAGE_API_KEY=your_api_key
-            
-            You can get a free API key at: https://www.alphavantage.co/support/#api-key
-
-            """)
+""")
         return None, None
 
 collector, predictor = get_collectors(selected_pair, selected_timeframe)
@@ -951,7 +944,7 @@ with tab4:
             news_api_key = os.getenv('NEWS_API_KEY')
             
             if not news_api_key:
-                st.warning("NEWS_API_KEY not found in environment variables. Please add it to your .env file.")
+                st.warning("NEWS_API_KEY not found in environment variables. Please add it to your .streamlit/secrets.toml.")
 
                 st.info("You can get a free API key from https://newsapi.org/")
                 return pd.DataFrame()
@@ -1146,5 +1139,5 @@ with tab4:
 
         st.caption(f"News data for {selected_pair} provided by News API (newsapi.org)")
 
-        st.caption(f"News data for {selected_pair} provided by News API (newsapi.org)") 
+        st.caption(f"News data for {selected_pair} provided by News API (newsapi.org)")
 
