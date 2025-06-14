@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+docs
+venv
+__pycache__".env" 
+"*.env" 
+=======
 # Environment variables
 .env
 
@@ -75,3 +81,4 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/ 
+>>>>>>> e73985b1ecca975a63a7b6f139f3111d75967bb0

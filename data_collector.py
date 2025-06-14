@@ -1,14 +1,16 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
-import talib
+from ta.trend import SMAIndicator, EMAIndicator, MACD
+from ta.momentum import RSIIndicator
+from ta.volatility import AverageTrueRange, BollingerBands
 from sqlalchemy import create_engine
 import os
-from dotenv import load_dotenv
 import requests
+import streamlit as st
 
 class ForexDataCollector:
-    def __init__(self, currency_pair="EUR/USD", interval="daily", db_path="sqlite:///forex_data.db"):
+    def __init__(self, currency_pair="EUR/USD", interval="daily", db_path="sqlite:///forex_data.db", alpha_vantage_key=None):
         """
         Initialize the ForexDataCollector using Alpha Vantage API
         
@@ -22,18 +24,23 @@ class ForexDataCollector:
             Valid values: "daily", "weekly", "monthly"
         db_path : str
             SQLite database path
+        alpha_vantage_key : str
+            Alpha Vantage API key (optional). If not provided, must be set in .env file
         """
         self.base_currency, self.quote_currency = currency_pair.split('/')
         self.interval = self._convert_interval(interval)
         self.engine = create_engine(db_path)
+
+        # Load Alpha Vantage API key from argument or .streamlit/secrets.toml
+        if alpha_vantage_key:
+            self.alpha_vantage_key = alpha_vantage_key
+        else:
+            try:
+                self.alpha_vantage_key = st.secrets["ALPHA_VANTAGE_API_KEY"]
+            except Exception:
+                raise ValueError("Alpha Vantage API key not found. Please provide it as an argument or set it in .streamlit/secrets.toml.")
+
         
-        # Load Alpha Vantage API key
-        load_dotenv()
-        self.alpha_vantage_key = os.getenv('ALPHA_VANTAGE_API_KEY')
-        
-        if not self.alpha_vantage_key:
-            raise ValueError("Alpha Vantage API key not found in .env file")
-            
     def _convert_interval(self, interval):
         """Convert interval string to Alpha Vantage format"""
         interval_map = {
@@ -159,40 +166,42 @@ class ForexDataCollector:
         # Calculate technical indicators
         try:
             # Trend Indicators
-            data['SMA_20'] = talib.SMA(data['Close'], timeperiod=20)
-            data['EMA_20'] = talib.EMA(data['Close'], timeperiod=20)
-            
+            data['SMA_20'] = SMAIndicator(close=data['Close'], window=20).sma_indicator()
+            data['EMA_20'] = EMAIndicator(close=data['Close'], window=20).ema_indicator()
+
             # Momentum Indicators
-            data['RSI'] = talib.RSI(data['Close'], timeperiod=14)
-            data['MACD'], data['MACD_Signal'], data['MACD_Hist'] = talib.MACD(
-                data['Close'], fastperiod=12, slowperiod=26, signalperiod=9
-            )
-            
+            data['RSI'] = RSIIndicator(close=data['Close'], window=14).rsi()
+            macd = MACD(close=data['Close'], window_slow=26, window_fast=12, window_sign=9)
+            data['MACD'] = macd.macd()
+            data['MACD_Signal'] = macd.macd_signal()
+            data['MACD_Hist'] = macd.macd_diff()
+
             # Volatility Indicators
-            data['ATR'] = talib.ATR(data['High'], data['Low'], data['Close'], timeperiod=14)
-            data['Bollinger_Upper'], data['Bollinger_Middle'], data['Bollinger_Lower'] = talib.BBANDS(
-                data['Close'], timeperiod=20
-            )
-            
+            atr = AverageTrueRange(high=data['High'], low=data['Low'], close=data['Close'], window=14)
+            data['ATR'] = atr.average_true_range()
+            bb = BollingerBands(close=data['Close'], window=20)
+            data['Bollinger_Upper'] = bb.bollinger_hband()
+            data['Bollinger_Middle'] = bb.bollinger_mavg()
+            data['Bollinger_Lower'] = bb.bollinger_lband()
+
             # Add Weekly VWAP (Volume Weighted Average Price)
             # For Forex, we don't have volume, so use a simple 5-day moving average
             data['Weekly_VWAP'] = data['Close'].rolling(window=5).mean()
-            
+
             # Add Support and Resistance for Breakout detection
             data['Resistance'] = data['High'].rolling(window=20).max()
             data['Support'] = data['Low'].rolling(window=20).min()
-            
+
             # Volume handling (we don't have volume for forex from Alpha Vantage)
             if 'Volume' not in data.columns:
                 data['Volume'] = 0
-            
+
             # Add percentage changes
             data['Returns'] = data['Close'].pct_change()
             data['Log_Returns'] = np.log(data['Close']/data['Close'].shift(1))
-            
+
         except Exception as e:
             print(f"Error calculating technical indicators: {str(e)}")
-            
         return data
     
     def fetch_news_data(self, query=None, max_results=10):
@@ -562,4 +571,5 @@ class ForexDataCollector:
             
         except Exception as e:
             print(f"Error fetching data: {str(e)}")
-            return None 
+
+            return None
