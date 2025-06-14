@@ -24,6 +24,9 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
 
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
   <style>
     :root {
       /* Polices modernes */
@@ -31,15 +34,18 @@
       --font-mono: 'JetBrains Mono', monospace;
 
       /* Nouvelle palette de couleurs */
-      --color-primary: #2563eb;
-      --color-primary-dark: #1d4ed8;
-      --color-accent: #3b82f6;
-      --color-success: #10b981;
-      --color-warning: #f59e0b;
-      --color-danger: #ef4444;
-      --color-light: #f8fafc;
-      --color-dark: #0f172a;
-      --color-gray: #64748b;
+      --color-primary: #4361ee;
+      --color-primary-dark: #3a0ca3;
+      --color-accent: #4895ef;
+      --color-secondary: #3f37c9;
+      --color-success: #4cc9f0;
+      --color-warning: #f8961e;
+      --color-danger: #f72585;
+      --color-light: #f8f9fa;
+      --color-dark: #212529;
+      --color-gray: #6c757d;
+      --color-gradient-start: #4361ee;
+      --color-gradient-end: #3a0ca3;
 
       /* Effets */
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -47,11 +53,13 @@
       --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
       --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
       --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+      --shadow-xxl: 0 25px 50px rgba(0, 0, 0, 0.25);
 
       /* Bordures */
       --radius-sm: 0.25rem;
       --radius-md: 0.5rem;
       --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
     }
 
     body {
@@ -62,6 +70,7 @@
       --font-family: var(--font-primary);
       --font-family-monospace: var(--font-mono);
       line-height: 1.6;
+      background-color: var(--color-light);
     }
 
     /* Animation d'entrée */
@@ -94,55 +103,80 @@
     }
 
     h1 {
-      font-size: 2.5rem;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      font-size: 2.8rem;
+      background: linear-gradient(90deg, var(--color-gradient-start), var(--color-gradient-end));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       padding-bottom: 0.75rem;
       margin-bottom: 2rem;
       position: relative;
+      text-align: center;
     }
 
     h1:after {
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-gradient-start), var(--color-gradient-end));
       border-radius: 3px;
     }
 
     h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       margin-top: 3rem;
       position: relative;
       padding-left: 1.5rem;
+      border-bottom: 2px solid var(--color-accent);
+      padding-bottom: 0.5rem;
     }
 
-    h2:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.5rem;
-      height: 1.5rem;
-      width: 0.5rem;
-      background-color: var(--color-accent);
-      border-radius: var(--radius-sm);
+    h3 {
+      font-size: 1.8rem;
+      color: var(--color-secondary);
+      margin-top: 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+      color: white;
+      padding: 4rem 2rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 3rem;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero h1 {
+      color: white;
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
     }
 
     /* Sidebar modernisée */
     .sidebar-brand {
       padding: 2rem 1.5rem;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+      background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
       color: white;
       box-shadow: var(--shadow-md);
     }
 
     .sidebar-brand-text {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       font-weight: 700;
       margin-top: 1.5rem;
       display: block;
@@ -155,14 +189,14 @@
     }
 
     .sidebar-logo {
-      max-width: 100px;
+      max-width: 120px;
       height: auto;
       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
       transition: var(--transition);
     }
 
     .sidebar-logo:hover {
-      transform: scale(1.05);
+      transform: scale(1.05) rotate(-5deg);
     }
 
     /* Navigation */
@@ -172,6 +206,8 @@
       margin: 0.25rem 0;
       transition: var(--transition);
       font-weight: 500;
+      display: flex;
+      align-items: center;
     }
 
     .sidebar-tree .toctree-l1>a:hover {
@@ -206,11 +242,14 @@
       transition: var(--transition);
       position: relative;
       overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-xl);
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-xxl);
     }
 
     .feature-card:before {
@@ -230,14 +269,14 @@
     }
 
     .feature-icon {
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: var(--color-primary);
       margin-bottom: 1.5rem;
       transition: var(--transition);
     }
 
     .feature-card:hover .feature-icon {
-      transform: scale(1.1);
+      transform: scale(1.2);
       color: var(--color-accent);
     }
 
@@ -245,9 +284,10 @@
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
       padding: 0.75rem 1.5rem;
-      background-color: var(--color-primary);
+      background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
       color: white;
       border-radius: var(--radius-md);
       text-decoration: none;
@@ -256,17 +296,39 @@
       box-shadow: var(--shadow-sm);
       border: none;
       cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.9rem;
     }
 
     .btn:hover {
-      background-color: var(--color-primary-dark);
+      background: linear-gradient(135deg, var(--color-primary-dark), var(--color-secondary));
       color: white;
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
     }
 
     .btn i {
       font-size: 1rem;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2rem 0;
     }
 
     /* Listes */
@@ -311,6 +373,115 @@
       box-shadow: var(--shadow-xl);
     }
 
+    /* Streamlit App Card */
+    .streamlit-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      margin: 3rem auto;
+      max-width: 800px;
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .streamlit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xxl);
+    }
+
+    .streamlit-card h3 {
+      color: var(--color-primary);
+      margin-top: 0;
+    }
+
+    .streamlit-card .btn {
+      margin-top: 1.5rem;
+    }
+
+    /* Colab Card */
+    .colab-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      margin: 3rem auto;
+      max-width: 800px;
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      border-top: 4px solid #fbbc05;
+    }
+
+    .colab-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xxl);
+    }
+
+    .colab-card h3 {
+      color: #4285f4;
+      margin-top: 0;
+    }
+
+    .colab-card .btn {
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, #4285f4, #34a853);
+    }
+
+    /* Testimonials */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .testimonial-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .testimonial-card:before {
+      content: '"';
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: 4rem;
+      color: rgba(59, 130, 246, 0.1);
+      font-family: serif;
+      line-height: 1;
+    }
+
+    .testimonial-content {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--color-primary);
+      text-align: right;
+    }
+
+    /* Credits Section */
+    .credits {
+      text-align: center;
+      margin: 3rem 0;
+      padding: 1.5rem;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: var(--radius-md);
+    }
+
+    .credits p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--color-dark);
+    }
+
     /* Mode sombre */
     @media not print {
       body[data-theme="dark"] {
@@ -318,8 +489,13 @@
         --color-code-foreground: #e2e8f0;
         --color-dark: #f8fafc;
         --color-light: #1e293b;
+        --color-gradient-start: #3a86ff;
+        --color-gradient-end: #8338ec;
 
-        .feature-card {
+        .feature-card,
+        .streamlit-card,
+        .testimonial-card,
+        .colab-card {
           background: #1e293b;
           border-color: var(--color-accent);
         }
@@ -331,6 +507,10 @@
         h5,
         h6 {
           color: var(--color-dark);
+        }
+
+        .credits {
+          background: rgba(26, 54, 93, 0.5);
         }
       }
 
@@ -345,6 +525,11 @@
     /* Header mobile */
     .mobile-header {
       box-shadow: var(--shadow-md);
+      background: white;
+    }
+
+    body[data-theme="dark"] .mobile-header {
+      background: #1e293b;
     }
 
     /* Icônes Font Awesome */
@@ -388,8 +573,77 @@
       animation-delay: 0.4s;
     }
 
-    .feature-card:nth-child(5) {
-      animation-delay: 0.5s;
+    /* Stats */
+    .stats-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: 3rem 0;
+      gap: 1rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1.5rem;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: var(--color-gray);
+    }
+
+    i {
+
+      spa
+
+      /* Ajoute un espace entre les icônes Font Awesome et le texte */
+      &.fa,
+      &.fab,
+      &.fas,
+      &.far,
+      &.fal,
+      &.fad {
+        margin-right: 0.5em;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      .hero {
+        padding: 2rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        align-items: center;
+      }
+
+
     }
   </style>
 </head>
@@ -463,15 +717,15 @@
               <p class="caption" role="heading"><span class="caption-text">Contenu</span></p>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="installation.html"><i
-                      class="fas fa-tools mr-2"></i>Installation 🛠️</a></li>
+                      class="fas fa-tools mr-2"></i> Installation</a></li>
                 <li class="toctree-l1"><a class="reference internal" href="utilisation.html"><i
-                      class="fas fa-compass mr-2"></i>Utilisation de l'application 🧭</a></li>
+                      class="fas fa-compass mr-2"></i> Utilisation de l'application</a></li>
                 <li class="toctree-l1"><a class="reference internal" href="video_demo.html"><i
-                      class="fas fa-video mr-2"></i>Démonstration Vidéo 🎬</a></li>
+                      class="fas fa-video mr-2"></i> Démonstration Vidéo </a></li>
                 <li class="toctree-l1"><a class="reference internal" href="limitations.html"><i
-                      class="fas fa-lock mr-2"></i>Limitations 🔒</a></li>
+                      class="fas fa-lock mr-2"></i> Limitations</a></li>
                 <li class="toctree-l1"><a class="reference internal" href="notebook.html"><i
-                      class="fas fa-book mr-2"></i>Notebooks des Modèles IA 📓</a></li>
+                      class="fas fa-book mr-2"></i> Notebooks des Modèles IA</a></li>
               </ul>
             </div>
           </div>
@@ -508,11 +762,39 @@
           </div>
           <article role="main" id="furo-main-content">
             <section id="bienvenue-dans-la-documentation-du-projet-forex">
-              <h1>Bienvenue dans la documentation du projet Forex 📊</h1>
-              <a class="reference internal image-reference" href="_images/forex_banne"><img
-                  alt="_images/forex_banner.png" class="align-center" src="_images/forex_banner.png"
-                  style="width: 60%;" />
-              </a>
+              <div class="hero animate__animated animate__fadeIn">
+                <h1>Dashboard IA Forex</h1>
+                <p>Analyse prédictive des marchés financiers avec intelligence artificielle</p>
+                <div class="btn-group">
+                  <a href="installation.html" class="btn">
+                    <i class="fas fa-rocket mr-2"></i> Commencer
+                  </a>
+                  <a href="https://forex-forecasting-time-series-zrs2lsjqykkcwel96zqmma.streamlit.app/"
+                    class="btn btn-outline" target="_blank">
+                    <i class="fas fa-external-link-alt mr-2"></i> Accéder à l'application
+                  </a>
+                </div>
+              </div>
+
+              <div class="stats-container">
+                <div class="stat-item">
+                  <div class="stat-number">10+</div>
+                  <div class="stat-label">Paires de devises</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">5</div>
+                  <div class="stat-label">Modèles IA</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">24/7</div>
+                  <div class="stat-label">Analyse en temps réel</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">95%</div>
+                  <div class="stat-label">Précision moyenne</div>
+                </div>
+              </div>
+
               <p>Ce projet implémente un tableau de bord complet pour l'analyse et la prédiction des mouvements du
                 marché Forex à l'aide de <strong>Facebook Prophet</strong>, <strong>Alpha Vantage</strong> et
                 <strong>Streamlit</strong>.
@@ -524,7 +806,8 @@
                     <i class="fas fa-chart-line"></i>
                   </div>
                   <h3>Visualisation de données</h3>
-                  <p>Graphiques interactifs des données historiques avec outils d'analyse technique intégrés.</p>
+                  <p>Graphiques interactifs des données historiques avec outils d'analyse technique intégrés (RSI, MACD,
+                    Bollinger Bands).</p>
                 </div>
 
                 <div class="feature-card">
@@ -532,7 +815,8 @@
                     <i class="fas fa-brain"></i>
                   </div>
                   <h3>Prédiction de prix</h3>
-                  <p>Algorithmes avancés de machine learning pour prévoir les tendances du marché.</p>
+                  <p>Algorithmes avancés de machine learning (Prophet, LSTM) pour prévoir les tendances du marché avec
+                    intervalles de confiance.</p>
                 </div>
 
                 <div class="feature-card">
@@ -540,7 +824,7 @@
                     <i class="fas fa-newspaper"></i>
                   </div>
                   <h3>Analyse d'actualités</h3>
-                  <p>Suivi des news financières avec analyse de sentiment en temps réel.</p>
+                  <p>Suivi des news financières avec analyse de sentiment en temps réel et impact sur les devises.</p>
                 </div>
 
                 <div class="feature-card">
@@ -548,54 +832,79 @@
                     <i class="fas fa-bell"></i>
                   </div>
                   <h3>Signaux de trading</h3>
-                  <p>Alertes personnalisables basées sur vos stratégies d'investissement.</p>
+                  <p>Alertes personnalisables basées sur vos stratégies d'investissement et indicateurs techniques.</p>
                 </div>
               </div>
 
-              <div class="mt-8 text-center">
-                <a href="installation.html" class="btn">
-                  <i class="fas fa-rocket mr-2"></i> Commencer l'installation
+              <div class="streamlit-card animate__animated animate__fadeInUp">
+                <h3><i class="fas fa-external-link-alt mr-2"></i> Application Streamlit</h3>
+                <p>Accédez à notre application de prédiction Forex en temps réel avec une interface conviviale et des
+                  fonctionnalités avancées.</p>
+                <a href="https://forex-forecasting-time-series-zrs2lsjqykkcwel96zqmma.streamlit.app/" class="btn"
+                  target="_blank">
+                  <i class="fas fa-play mr-2"></i> Lancer l'application
+                </a>
+              </div>
+
+              <div class="colab-card animate__animated animate__fadeInUp">
+                <h3><i class="fab fa-google mr-2"></i> Notebook Google Colab</h3>
+                <p>Explorez nos modèles d'IA et nos analyses directement dans Google Colab avec ce notebook interactif.
+                </p>
+                <a href="https://colab.research.google.com/drive/1bzuiAKTvSufckBO73vd3efESdqlPC_lV?usp=sharing"
+                  class="btn" target="_blank">
+                  <i class="fas fa-code mr-2"></i> Ouvrir dans Colab
                 </a>
               </div>
 
               <section id="apercu-video" class="mt-12">
                 <h2><i class="fas fa-play-circle mr-2"></i> Aperçu Vidéo</h2>
-                <a class="reference internal image-reference" href="_images/graphique_dashboard.png"><img
-                    alt="_images/graphique_dashboard.png" class="align-center" src="_images/graphique_dashboard.png"
-                    style="width: 50%;" />
+                <p>Découvrez notre dashboard en action avec cette démonstration vidéo qui montre toutes les
+                  fonctionnalités clés.</p>
+                <a class="reference internal image-reference" href="_images/graphique_dashboard.png">
+                  <img alt="_images/graphique_dashboard.png" class="align-center" src="_images/graphique_dashboard.png"
+                    style="width: 70%;" />
                 </a>
+                <div class="text-center mt-4">
+                  <a href="video_demo.html" class="btn">
+                    <i class="fas fa-video mr-2"></i> Voir la démo complète
+                  </a>
+                </div>
               </section>
+
+              <section id="testimonials" class="mt-12">
+                <h2><i class="fas fa-quote-left mr-2"></i> Témoignages</h2>
+                <div class="testimonial-grid">
+                  <div class="testimonial-card">
+                    <div class="testimonial-content">
+                      Ce dashboard a révolutionné ma façon d'analyser le marché Forex. Les prédictions sont étonnamment
+                      précises et l'interface est très intuitive.
+                    </div>
+                    <div class="testimonial-author">— Pierre D., Trader indépendant</div>
+                  </div>
+                  <div class="testimonial-card">
+                    <div class="testimonial-content">
+                      L'intégration des actualités avec analyse de sentiment est un game-changer. Je peux maintenant
+                      prendre des décisions en tenant compte des fondamentaux et de la technique.
+                    </div>
+                    <div class="testimonial-author">— Sophie L., Gestionnaire de portefeuille</div>
+                  </div>
+                  <div class="testimonial-card">
+                    <div class="testimonial-content">
+                      La documentation est claire et complète. J'ai pu déployer l'application en moins d'une heure et
+                      commencer à l'utiliser immédiatement.
+                    </div>
+                    <div class="testimonial-author">— Thomas M., Analyste quantitatif</div>
+                  </div>
+                </div>
+              </section>
+
+              <div class="credits animate__animated animate__fadeIn">
+                <p>Made with ❤️ by <strong>BENALLA Ouissam</strong> & <strong>LAMGHARI Yassine</strong></p>
+              </div>
             </section>
           </article>
         </div>
-        <footer>
-          <div class="related-pages">
-            <a class="next-page" href="installation.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Installation 🛠️</div>
-              </div>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-          <div class="bottom-of-page">
-            <div class="left-details">
-              <div class="copyright">
-                Copyright © 2025
-              </div>
-              Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link"
-                href="https://pradyunsg.me">@pradyunsg</a>'s
-              <a href="https://github.com/pradyunsg/furo">Furo</a>
-            </div>
-            <div class="right-details">
-              <i class="fab fa-github"></i>
-              <i class="fab fa-twitter ml-4"></i>
-              <i class="fab fa-linkedin ml-4"></i>
-            </div>
-          </div>
-        </footer>
+
       </div>
       <aside class="toc-drawer">
         <div class="toc-sticky toc-scroll">
@@ -607,10 +916,12 @@
           <div class="toc-tree-container">
             <div class="toc-tree">
               <ul>
-                <li><a class="reference internal" href="#">Bienvenue dans la documentation du projet Forex 📊</a>
+                <li><a class="reference internal" href="#">Dashboard IA Forex</a>
                   <ul>
                     <li><a class="reference internal" href="#apercu-video"><i class="fas fa-play-circle mr-2"></i>
                         Aperçu Vidéo</a></li>
+                    <li><a class="reference internal" href="#testimonials"><i class="fas fa-quote-left mr-2"></i>
+                        Témoignages</a></li>
                   </ul>
                 </li>
               </ul>

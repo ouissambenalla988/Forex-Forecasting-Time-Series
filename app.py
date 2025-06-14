@@ -885,36 +885,6 @@ body[data-theme="dark"] .name-links a:hover {
     background-color: rgba(0, 119, 204, 0.1); /* Légère ombre */
 }
 </style>
-
-<div class="footer">
-    <p>
-        Data provided by 
-        <a href="https://www.alphavantage.co/support/#api-key" target="_blank">Alpha Vantage</a> | 
-        News provided by
-        <a href="https://newsapi.org" target="_blank">News API</a>
-        Built with <a href="https://streamlit.io/" target="_blank">Streamlit</a>
-    </p>
-    <p>
-        © 2025 by 
-        <span class="name-container">
-            Benalla Ouissam
-            <span class="name-links">
-                <a href="https://www.linkedin.com/in/ouissambeanalla/" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
-                <a href="https://github.com/ouissambenalla988" target="_blank"><i class="fab fa-github"></i>GitHub</a>
-                <a href="mailto:ouissambenalla.ia@gmail.com"><i class="fas fa-envelope"></i>Email</a>
-            </span>
-        </span>
-        & 
-        <span class="name-container">
-            Lamghari Yassine
-            <span class="name-links">
-                <a href="https://www.linkedin.com/in/yassine-lamghari-61b70b330/" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
-                <a href="https://github.com/yassine-Lamghari" target="_blank"><i class="fab fa-github"></i>GitHub</a>
-                <a href="mailto:yassine.lamghari.ai@gmail.com"><i class="fas fa-envelope"></i>Email</a>
-            </span>
-        </span>.
-    </p>
-</div>
 """
 
 st.markdown(footer_html, unsafe_allow_html=True)
